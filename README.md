@@ -1,45 +1,48 @@
-usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           [--super-prefix=<path>] [--config-env=<name>=<envvar>]
-           <command> [<args>]
 
-These are common Git commands used in various situations:
+# Web Scraping with Selenium WebDriver
 
-start a working area (see also: git help tutorial)
-   clone     Clone a repository into a new directory
-   init      Create an empty Git repository or reinitialize an existing one
+This repository contains a web scraping tool that utilizes **Selenium WebDriver** with the latest version of FireFox to scrape data from the web. The tool supports proxy rotating and manual user agents for additional privacy and flexibility.
+This is the initial build of script using proxy rotating, user agents and other techniques to stay anonymous.
+I am know this is the not professional script but will be useful for moderate scraping.
+## Requirements
 
-work on the current change (see also: git help everyday)
-   add       Add file contents to the index
-   mv        Move or rename a file, a directory, or a symlink
-   restore   Restore working tree files
-   rm        Remove files from the working tree and from the index
+The following dependencies are required to run the web scraping tool:
 
-examine the history and state (see also: git help revisions)
-   bisect    Use binary search to find the commit that introduced a bug
-   diff      Show changes between commits, commit and working tree, etc
-   grep      Print lines matching a pattern
-   log       Show commit logs
-   show      Show various types of objects
-   status    Show the working tree status
+- Python 3.x
+- Selenium WebDriver
+- geckodriver (for FireFox)
+- Requests (for sending HTTP requests)
+- Random (for parsing HTML)
+- Time (for rotating proxies)
+- Beautiful Soup (for parsing HTML)
 
-grow, mark and tweak your common history
-   branch    List, create, or delete branches
-   commit    Record changes to the repository
-   merge     Join two or more development histories together
-   rebase    Reapply commits on top of another base tip
-   reset     Reset current HEAD to the specified state
-   switch    Switch branches
-   tag       Create, list, delete or verify a tag object signed with GPG
+You can install the dependencies using pip:
 
-collaborate (see also: git help workflows)
-   fetch     Download objects and refs from another repository
-   pull      Fetch from and integrate with another repository or a local branch
-   push      Update remote refs along with associated objects
+####pip install selenium requests beautifulsoup4
 
-'git help -a' and 'git help -g' list available subcommands and some
-concept guides. See 'git help <command>' or 'git help <concept>'
-to read about a specific subcommand or concept.
-See 'git help git' for an overview of the system.
+## Usage
+
+To use the web scraping tool, just go the main file do whatever you want, but make sure you use the `Anonymous` class for making the object of WebDriver. `Anonymous` class will do work on his behalf. The `main.py` file should contain the following information:
+
+- `base_url`: the base URL of the website you want to scrape
+- `search_query`: the search query to be used to fetch data
+
+The `Anonymous.py` file should contain the following information:
+- `proxies`: a list of proxy servers to be used for scraping.
+- `user_agents`: a list of user agents to be used for scraping.
+- `setup_webdriver`: create a web driver with desired capabilities and options.
+
+All the data like proxies and user agents stored in text files (`Data Folder`), you can edit it if you want, before running actual work program will ask to download again the proxies to increase efficiency and speed.
+
+- `proxies`: up http proxies downloaded from `geonode.com`
+
+
+To start the web scraping tool, run the following file:
+
+###python main.py
+
+You can add additional command line arguments as needed.
+
+## Contact
+
+If you have any questions or issues, please contact the author at [hammadrafique029@gmail.com](mailto:hammadrafique029@gmail.com) or [codingmagician0@gmail.com](mailto:codingmagician0@gmail.com).

@@ -1,4 +1,3 @@
-from selenium import webdriver
 from proxies import *
 import random
 
@@ -43,12 +42,11 @@ class Anonymous:
         except Exception as e:
             print("\n\tGOT ERROR IN DEFINING USER AGENTS! ERROR BELOW:\n\t" + str(e))
 
-    def setup_webDriver(self, Url):
+    def setup_webDriver(self):
         try:
             self.setup_proxies()
             driver = webdriver.Firefox(desired_capabilities=self.setup_desired_capabilities(),
                                        options=self.setup_agents())
-            driver.get(Url)
-            driver.close()
+            return driver
         except Exception as e:
             print("\n\tGOT ERROR IN DEFINING WEB DRIVER! ERROR BELOW:\n\t" + str(e))
