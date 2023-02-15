@@ -33,15 +33,31 @@ class FreeProxies:
             driver = webdriver.Firefox()
             driver.get("https://geonode.com/free-proxy-list")
             time.sleep(5)
-
             wait = WebDriverWait(driver, 20)
+
+            ####################################################################################
+            # Accepting Cookies tag Because some fields are not visible until we accept cookies
+            WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR,
+                                                                        "div.cf1lHZ:nth-child(2) > button:nth-child(1)"))).click()
+            # driver.find_element(By.CSS_SELECTOR, "div.cf1lHZ:nth-child(2) > button:nth-child(1)").click()
+            time.sleep(3)
+            ####################################################################################
+
+            ####################################################################################
+            # Finding and clicking the menu or table to change proxy type were looking for.
+
             element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#headlessui-popover-button-\:r6\:")))
             element.click()
-
             time.sleep(1)
-            driver.find_element(By.CSS_SELECTOR, "#filter-0").click()
+            # Clicking on button to show only http proxies, proxy type button on website,
+            # driver.find_element(By.CSS_SELECTOR, "#filter-0").click()
+            WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR,
+                                                                        "#filter-0"))).click()
             time.sleep(4)
+            ####################################################################################
 
+            ####################################################################################
+            # Now, it's time to fetch the proxies and save it in FREE_PROXIES.txt file
             body_div_of_proxies = driver.find_elements(By.TAG_NAME, "tbody")
 
             for proxy in body_div_of_proxies:
@@ -50,10 +66,11 @@ class FreeProxies:
                     columns = col.find_elements(By.TAG_NAME, "td")
                     proxy_plus_port = columns[0].text + ":" + columns[1].text
                     self.proxy.append(proxy_plus_port)
-
             self.save_proxies()
             print(f"Number of proxies fetched: {len(self.proxy)}")
             driver.close()
+            ####################################################################################
+
         except Exception as e:
             print(e)
             exit()
